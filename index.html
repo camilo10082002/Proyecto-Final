@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Administración de Estudiantes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Administración de Estudiantes</h1>
+
+    <nav>
+        <button onclick="mostrarSeccion('crear')">Crear Estudiante</button>
+        <button onclick="mostrarSeccion('listar')">Listar Estudiantes</button>
+        <button onclick="mostrarSeccion('eliminar')">Eliminar Estudiante</button>
+    </nav>
+
+    <!-- SECCIÓN CREAR -->
+    <section id="crear" class="seccion">
+        <h2>Crear estudiante</h2>
+        <form id="formCrear">
+            <input type="text" id="nombres" placeholder="Nombres" required>
+            <input type="text" id="apellidos" placeholder="Apellidos" required>
+            <input type="number" id="edad" placeholder="Edad" required>
+            <select id="carrera" required></select>
+            <input type="number" id="estrato" placeholder="Estrato" required>
+            <button type="submit">Guardar</button>
+        </form>
+    </section>
+
+    <!-- SECCIÓN LISTAR -->
+    <section id="listar" class="seccion oculto">
+        <h2>Listado de Estudiantes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Edad</th>
+                    <th>Carrera</th>
+                    <th>Estrato</th>
+                </tr>
+            </thead>
+            <tbody id="tablaEstudiantes"></tbody>
+        </table>
+    </section>
+
+    <!-- SECCIÓN ELIMINAR -->
+    <section id="eliminar" class="seccion oculto">
+        <h2>Eliminar estudiante</h2>
+        <input type="number" id="idEliminar" placeholder="ID del estudiante">
+        <button onclick="eliminarEstudiante()">Eliminar</button>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>

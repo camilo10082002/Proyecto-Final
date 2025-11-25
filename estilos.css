@@ -1,0 +1,29 @@
+body {
+    font-family: Arial;
+    padding: 20px;
+}
+
+nav button {
+    margin-right: 10px;
+}
+
+.seccion {
+    margin-top: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+}
+
+td, th {
+    padding: 8px;
+}

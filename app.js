@@ -76,32 +76,56 @@ function cargarEstudiantes() {
 // Función para cargar carreras desde el servicio externo
 async function cargarCarreras() {
     try {
-        // Usando mockable.io como servicio externo
-        const response = await fetch('http://demo1177330.mockable.io/carreras');
+        console.log('Cargando carreras desde Mockable...');
+        
+        // URL de Mockable con un endpoint específico
+        const response = await fetch('http://demo1177330.mockable.io/carreras', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        
         if (!response.ok) {
-            throw new Error('Error al cargar las carreras');
+            throw new Error(`Error HTTP: ${response.status}`);
         }
+        
         const data = await response.json();
-        carreras = data.carreras;
+        console.log('Datos recibidos de Mockable:', data);
         
-        // Llenar el select de carreras
-        llenarSelectCarreras(document.getElementById('carrera'));
+        // Manejar la respuesta
+        if (data && data.carreras && Array.isArray(data.carreras)) {
+            carreras = data.carreras;
+            console.log('Carreras cargadas exitosamente:', carreras);
+        } else {
+            throw new Error('Formato de respuesta inválido');
+        }
+        
     } catch (error) {
-        console.error('Error:', error);
-        // Si falla la conexión, usar carreras por defecto
-        carreras = [
-            "T.P. Sistemas",
-            "Contabilidad",
-            "Ing. Mecanica",
-            "Administración de Empresas",
-            "Derecho",
-            "Medicina",
-            "Psicología"
-        ];
-        
-        // Llenar el select de carreras con las opciones por defecto
-        llenarSelectCarreras(document.getElementById('carrera'));
+        console.warn('Error cargando carreras de Mockable:', error);
+        console.log('Usando carreras por defecto...');
+        carreras = obtenerCarrerasPorDefecto();
     }
+    
+    // Llenar el select de carreras
+    llenarSelectCarreras(document.getElementById('carrera'));
+}
+
+// Función para obtener carreras por defecto
+function obtenerCarrerasPorDefecto() {
+    return [
+        "T.P. Sistemas",
+        "Contabilidad", 
+        "Ing. Mecanica",
+        "Administración de Empresas",
+        "Derecho",
+        "Medicina",
+        "Psicología",
+        "Ingeniería Civil",
+        "Arquitectura",
+        "Enfermería"
+    ];
 }
 
 // Función para llenar un select con las carreras disponibles
@@ -118,6 +142,8 @@ function llenarSelectCarreras(selectElement) {
         option.textContent = carrera;
         selectElement.appendChild(option);
     });
+    
+    console.log('Select de carreras actualizado con:', carreras.length, 'opciones');
 }
 
 // Función para mostrar una sección específica y ocultar las demás
@@ -160,6 +186,12 @@ function crearEstudiante(event) {
     const edad = parseInt(document.getElementById('edad').value);
     const carrera = document.getElementById('carrera').value;
     const estrato = parseInt(document.getElementById('estrato').value);
+    
+    // Validar que se seleccionó una carrera
+    if (carrera === "" || carrera === "– Seleccione opción –") {
+        mostrarMensaje('Por favor seleccione una carrera', 'error');
+        return;
+    }
     
     // Crear el nuevo estudiante
     const nuevoEstudiante = {

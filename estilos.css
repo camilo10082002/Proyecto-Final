@@ -1,29 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    min-height: 100vh;
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-nav button {
-    margin-right: 10px;
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.seccion {
-    margin-top: 20px;
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #2c3e50;
 }
 
-.oculto {
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #666;
+    transition: color 0.3s;
+}
+
+.nav-btn.active {
+    color: #000;
+    font-weight: 600;
+}
+
+.nav-btn:hover {
+    color: #000;
+}
+
+.separator {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 10px 0 30px 0;
+}
+
+.seccion-activa {
+    display: block;
+}
+
+.seccion-oculta {
     display: none;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+.estudiante-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-bottom-color: #007bff;
+}
+
+.underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+}
+
+.form-group input:focus + .underline,
+.form-group select:focus + .underline {
+    background-color: #007bff;
+    height: 2px;
+}
+
+.btn-guardar {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-guardar:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la tabla */
+.tabla-container {
+    margin-top: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px;
 }
 
-table, td, th {
-    border: 1px solid black;
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-td, th {
-    padding: 8px;
+th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #555;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Estilos para eliminar estudiante */
+.eliminar-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.btn-eliminar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.btn-eliminar:hover {
+    background-color: #c82333;
+}
+
+.estudiante-info {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border-left: 4px solid #dc3545;
+}
+
+.estudiante-info h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.estudiante-info p {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Mensajes */
+.mensaje {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.mensaje-exito {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.mensaje-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Placeholder styling */
+.form-group input::placeholder,
+.form-group select::placeholder {
+    color: transparent;
+}
+
+.form-group input:not(:placeholder-shown) + .underline,
+.form-group select:not(:placeholder-shown) + .underline {
+    background-color: #007bff;
+    height: 2px;
 }

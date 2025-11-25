@@ -77,7 +77,7 @@ function cargarEstudiantes() {
 async function cargarCarreras() {
     try {
         // Usando mockable.io como servicio externo
-        const response = await fetch('https://demo1775566.mockable.io/carreras');
+        const response = await fetch('http://demo1177330.mockable.io/carreras');
         if (!response.ok) {
             throw new Error('Error al cargar las carreras');
         }
